@@ -1,7 +1,7 @@
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody))]
-public class CustomGravity : MonoBehaviour
+public class HouseWreckerCustomGravity : MonoBehaviour
 {
     // Gravity Scale editable on the inspector
     // providing a gravity scale per object
