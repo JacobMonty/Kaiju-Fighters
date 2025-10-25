@@ -6,7 +6,9 @@ using UnityEngine.UI;
 public class HouseWreckerManager : MonoBehaviour
 {
     public GameObject house;
+    public Sprite[] houseTypes;
     public Text scoreText;
+
     public Vector3 minPosition, maxPosition;
 
     public static int score = 0;
@@ -46,10 +48,26 @@ public class HouseWreckerManager : MonoBehaviour
             Random.Range(minPosition.y, maxPosition.y),
             Random.Range(minPosition.z, maxPosition.z)
             );
-            int randInt = Random.Range(0, 100);
-
-            
+            float randFloat = Random.Range(0, 100);
             GameObject newHouse = Instantiate(house, randomPosition, Quaternion.identity);
+
+            if (randFloat < 5 + houseSpawnNum / 2)
+            {
+                newHouse.GetComponentAtIndex(0).GetComponent<SpriteRenderer>().sprite = houseTypes[2];
+                newHouse.tag = "Yellow House";
+            }
+            else if (randFloat < 20 + gameProgression / 2)
+            {
+                newHouse.GetComponentAtIndex(0).GetComponent<SpriteRenderer>().sprite = houseTypes[0];
+                newHouse.tag = "Red House";
+            }
+            else 
+            { 
+                newHouse.GetComponent<SpriteRenderer>().sprite = houseTypes[1];
+                newHouse.tag = "Green House";
+            }
+
+            //Debug.Log(randFloat);
         }
         
     }
