@@ -47,9 +47,12 @@ public class PlayerController : MonoBehaviour
         {
 
             sr.flipX = true;
+            
         }
         else if (x != 0 && x > 0) {
+
             sr.flipX = false;
+
         }
 
     }
