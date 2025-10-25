@@ -3,49 +3,74 @@ using UnityEngine;
 
 public class Target : MonoBehaviour
 {
-    // Set this key in the Inspector for each target
-    public KeyCode keyToPress; 
+    public KeyCode keyToPress;
+    public string targetNoteTag; // e.g., "NoteLeft" or "NoteRight"
+    
+    [Header("Links")]
+    public GameManager gameManager;
+    public AudioClip hitSound;
+    public GameObject hitEffectPrefab;
 
-    private GameObject noteInTarget; // The note currently in our trigger
+    // We need to add this to link to the character
+    public string animationTriggerName; // e.g., "HitLeft"
+    
+    private GameObject noteInTarget;
+    private AudioSource audioSource;
 
-    void Update()
+    void Start()
     {
-        // Check if the correct key is pressed
-        if (Input.GetKeyDown(keyToPress))
+        audioSource = GetComponent<AudioSource>();
+        // We find the GameManager once at the start
+        if (gameManager == null)
         {
-            // Check if a note is currently in our trigger
-            if (noteInTarget != null)
-            {
-                // We hit the note!
-                Debug.Log("Hit!");
-                Destroy(noteInTarget); // Destroy the note
-                noteInTarget = null; // Clear the reference
-                
-                // Add score logic here
-            }
-            else
-            {
-                // We missed!
-                Debug.Log("Miss!");
-                // Add miss/penalty logic here
-            }
+            gameManager = FindFirstObjectByType<GameManager>();
         }
     }
 
-    // This function is called when another collider ENTERS our trigger
+    void Update()
+    {
+        if (Input.GetKeyDown(keyToPress))
+        {
+            if (noteInTarget != null)
+            {
+                // --- HIT! ---
+                gameManager.AddScore();
+                
+                // Play sound
+                // audioSource.PlayOneShot(hitSound);
+                
+                // Show hit effect
+                // Instantiate(hitEffectPrefab, transform.position, Quaternion.identity);
+                
+                // Trigger character animation (for Part 4)
+                /*if (gameManager.characterAnimator != null)
+                {
+                    gameManager.characterAnimator.SetTrigger(animationTriggerName);
+                }*/
+
+                // Destroy the note and clear
+                Destroy(noteInTarget);
+                noteInTarget = null;
+            }
+            else
+            {
+                // --- Key pressed, but no note. This is a MISS! ---
+                gameManager.HandleMiss();
+            }
+        }
+    }
+    
+    // We need to check for the *specific* note
     private void OnTriggerEnter2D(Collider2D other)
     {
-        // Check if the object that entered is a Note
-        if (other.CompareTag("Note"))
+        if (other.CompareTag(targetNoteTag))
         {
             noteInTarget = other.gameObject;
         }
     }
 
-    // This function is called when another collider LEAVES our trigger
     private void OnTriggerExit2D(Collider2D other)
     {
-        // If the note that left is the one we were tracking, clear it
         if (other.gameObject == noteInTarget)
         {
             noteInTarget = null;

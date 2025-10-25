@@ -5,6 +5,9 @@ TagManager:
   serializedVersion: 3
   tags:
   - Note
+  - Plate
+  - NoteLeft
+  - NoteRight
   layers:
   - Default
   - TransparentFX
