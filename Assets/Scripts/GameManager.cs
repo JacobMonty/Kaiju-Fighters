@@ -1,7 +1,7 @@
 // GameManager.cs
 using UnityEngine;
 
-public class GameManager : MonoBehaviour
+public class RhythmGameManager : MonoBehaviour
 {
     // Drag your Note prefab from the Project folder here
     public GameObject notePrefab; 
