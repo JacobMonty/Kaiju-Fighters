@@ -6,6 +6,8 @@ TagManager:
   tags:
   - Red House
   - House
+  - Yellow House
+  - Green House
   layers:
   - Default
   - TransparentFX

@@ -22,14 +22,13 @@ public class PlayerController : MonoBehaviour
         float y = Input.GetAxis("Vertical");
 
         // Note: I got this error because of the input package. Will not work if not deleted
-        Vector3 moveDir = new Vector3(x, 0, y); // y will decide depth, this time
 
         // TODO: Make player faster on y axis only
 
-        rb.linearVelocity = moveDir;
+        rb.linearVelocity = new Vector3(x * speed, 0, y * speed * 1.25f);
 
         // flip sprite depending on direction
-        if(x != 0 && x < 0)
+        if (x != 0 && x < 0)
         {
             sr.flipX = true;
         }
@@ -41,22 +40,11 @@ public class PlayerController : MonoBehaviour
         if(x != 0 || y != 0) 
         {
             _animator.SetBool("isMoving", true);
-            Debug.Log("IsMoving");
+            //Debug.Log("IsMoving");
         } else
         {
             _animator.SetBool("isMoving", false);
-            Debug.Log("Idle");
-        }
-    }
-
-    void OnCollisionEnter(Collision collision)
-    {
-        if (collision.gameObject.tag == "House")
-        {
-            //If the GameObject has the same tag as specified, output this message in the console
-            Debug.Log("It's been hit!");
-
-            
+            //Debug.Log("Idle");
         }
     }
 }
