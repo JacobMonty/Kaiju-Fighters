@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour
@@ -5,6 +6,8 @@ public class PlayerController : MonoBehaviour
 
     public float speed;
     public float groundDist;
+
+
 
     public LayerMask terrainLayer;
     public Rigidbody rb;
@@ -15,8 +18,10 @@ public class PlayerController : MonoBehaviour
     {
 
         rb = gameObject.GetComponent<Rigidbody>();
-        
+
     }
+
+
 
     // Update is called once per frame
     void Update()
@@ -47,13 +52,18 @@ public class PlayerController : MonoBehaviour
         {
 
             sr.flipX = true;
-            
+
         }
-        else if (x != 0 && x > 0) {
+        else if (x != 0 && x > 0)
+        {
 
             sr.flipX = false;
 
         }
+
+
+
+
 
     }
 }
