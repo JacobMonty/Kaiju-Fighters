@@ -4,10 +4,17 @@
 TagManager:
   serializedVersion: 3
   tags:
+<<<<<<< HEAD
   - Red House
   - House
   - Yellow House
   - Green House
+=======
+  - Note
+  - Plate
+  - NoteLeft
+  - NoteRight
+>>>>>>> origin/shoe
   layers:
   - Default
   - TransparentFX
