@@ -3,7 +3,11 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 3
-  tags: []
+  tags:
+  - Red House
+  - House
+  - Yellow House
+  - Green House
   layers:
   - Default
   - TransparentFX
