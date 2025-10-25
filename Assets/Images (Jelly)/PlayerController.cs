@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour
@@ -5,8 +6,8 @@ public class PlayerController : MonoBehaviour
     public float speed;
 
     public Rigidbody rb;
-    public SpriteRenderer sr;
     public Animator _animator;
+    public SpriteRenderer sr;
     
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -40,9 +41,22 @@ public class PlayerController : MonoBehaviour
         if(x != 0 || y != 0) 
         {
             _animator.SetBool("isMoving", true);
+            Debug.Log("IsMoving");
         } else
         {
             _animator.SetBool("isMoving", false);
+            Debug.Log("Idle");
+        }
+    }
+
+    void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.tag == "House")
+        {
+            //If the GameObject has the same tag as specified, output this message in the console
+            Debug.Log("It's been hit!");
+
+            
         }
     }
 }
