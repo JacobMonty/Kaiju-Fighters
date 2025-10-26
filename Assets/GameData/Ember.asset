@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Ember
   m_EditorClassIdentifier: Assembly-CSharp::MoveData
   moveName: Ember
-  damage: 20
+  damage: 50
   cooldown: 10
   animationTrigger: Ember
   particleEffect: {fileID: 0}

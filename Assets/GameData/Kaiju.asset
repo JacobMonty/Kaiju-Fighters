@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c268669e3ca83f54482ef3065314b7c5, type: 3}
   m_Name: Kaiju
   m_EditorClassIdentifier: Assembly-CSharp::KaijuData
-  kaijuName: Kaiju
+  kaijuName: Bob
   maxHealth: 100
   dodgeChance: 70
   moves:

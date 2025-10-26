@@ -14,6 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::KaijuData
   kaijuName: Firezard
   maxHealth: 100
-  dodgeChance: 40
+  dodgeChance: 80
   moves:
   - {fileID: 11400000, guid: 7b2d423825c023142920c54423523a0b, type: 2}
