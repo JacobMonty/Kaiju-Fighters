@@ -30,11 +30,11 @@ public class HouseWreckerController : MonoBehaviour
         // flip sprite depending on direction
         if (x != 0 && x < 0)
         {
-            sr.flipX = true;
+            sr.flipX = false;
         }
         else
         {
-            sr.flipX = false;
+            sr.flipX = true;
         }
 
         if(x != 0 || y != 0) 
