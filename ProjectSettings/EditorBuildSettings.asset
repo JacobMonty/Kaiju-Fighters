@@ -6,8 +6,17 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/SampleScene.unity
+    path: Assets/Scenes/OverWorld.unity
     guid: 99c9720ab356a0642a771bea13969a05
+  - enabled: 1
+    path: Assets/Scenes/Rhythm.unity
+    guid: 3e9f422cc35318a438effefb542e0618
+  - enabled: 1
+    path: Assets/Scenes/HouseWrecker.unity
+    guid: 58b33979e32efb34a83a0232b2f043d2
+  - enabled: 1
+    path: Assets/Scenes/Cooking.unity
+    guid: fe950849ca1b4014084d4e34ef0aaadc
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
   m_UseUCBPForAssetBundles: 0
