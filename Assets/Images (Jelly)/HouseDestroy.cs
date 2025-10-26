@@ -1,3 +1,4 @@
+using Unity.Collections;
 using UnityEngine;
 
 public class HouseDestroy : MonoBehaviour
@@ -16,12 +17,16 @@ public class HouseDestroy : MonoBehaviour
     void OnCollisionEnter(Collision collision)
     {
         //Debug.Log("TOuch");
+
         if (collision.gameObject.name == "Kaiju")
         {
-            GetComponent<AudioSource>().Play();
+            GetComponent<Rigidbody>().constraints = RigidbodyConstraints.None;
+            GetComponent<Collider>().enabled = false;
+            FindFirstObjectByType<AudioSource>().Play();
 
-            if (tag == "Red House") 
+            if (tag == "Red House")
             {
+                FindFirstObjectByType<HouseWreckerManager>().EndGame();
                 Destroy(collision.gameObject);
             }
             else if (tag == "Yellow House")
@@ -32,8 +37,7 @@ public class HouseDestroy : MonoBehaviour
             {
                 FindFirstObjectByType<HouseWreckerManager>().AddPoints(1);
             }
-
-                Destroy(gameObject);
+            Destroy(gameObject, 3);
         }
     }
 }
