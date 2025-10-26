@@ -10,7 +10,6 @@ public class Plate : MonoBehaviour
     public int SushiType;
     private CookingGameManager gameManager;
     private float speed;
-    private float yOffset = 0.5f; // To stack ingredients
     
     void Start()
     {

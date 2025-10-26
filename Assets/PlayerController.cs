@@ -4,6 +4,8 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
 
+    public Animator animator;
+
     public float speed;
     public float groundDist;
 
@@ -18,7 +20,7 @@ public class PlayerController : MonoBehaviour
     {
 
         rb = gameObject.GetComponent<Rigidbody>();
-
+        Time.timeScale = 1; 
     }
 
 
@@ -52,13 +54,19 @@ public class PlayerController : MonoBehaviour
         {
 
             sr.flipX = true;
+            animator.SetBool("isMoving", true);
 
         }
         else if (x != 0 && x > 0)
         {
 
             sr.flipX = false;
+            animator.SetBool("isMoving", true);
 
+        } 
+        else if (x == 0)
+        {
+            animator.SetBool("isMoving", false);
         }
 
 
