@@ -1,6 +1,7 @@
 using UnityEngine;
 using TMPro; // For the UI text
-using System.Collections.Generic; // To use Lists
+using System.Collections.Generic;
+using UnityEngine.UI; // To use Lists
 
 public class CookingGameManager : MonoBehaviour
 {
@@ -15,10 +16,11 @@ public class CookingGameManager : MonoBehaviour
     public GameObject platePrefab;
     public Transform plateSpawnPoint;
     public TextMeshProUGUI timerText;
+    public Sprite[] Sprites;
     public TextMeshProUGUI scoreText; // Add a score variable if you want
     
     // This will hold the "correct" order
-    private List<IngredientType> currentOrder = new List<IngredientType>();
+    private List<int> currentOrder = new List<int>();
 
     void Start()
     {
@@ -29,13 +31,11 @@ public class CookingGameManager : MonoBehaviour
 
     void Update()
     {
-        // --- Timer Logic ---
-        gameTimer -= Time.deltaTime;
-        timerText.text = "Time: " + Mathf.Ceil(gameTimer).ToString();
 
-        if (gameTimer <= 0)
+        int randomNum = Random.Range(0, 10000);
+        if(randomNum > 10000 - 90)
         {
-            EndGame();
+            SpawnNewPlate();
         }
     }
 
@@ -48,11 +48,11 @@ public class CookingGameManager : MonoBehaviour
     {
         // This is a simple example. You can make this more complex.
         currentOrder.Clear();
-        currentOrder.Add(IngredientType.Cake);
-        currentOrder.Add(IngredientType.Frosting);
-        
-        // TODO: Update the UI (OrderDisplay) to show these ingredients
-        Debug.Log("New Order: Cake and Frosting");
+        for(int i = 0; i < 2; i++) currentOrder.Add(Random.Range(0, 4));
+        Debug.Log("New Order: " + GameObject.Find("Order1Image"));
+
+        GameObject.Find("Order1Image").GetComponent<Image>().sprite = Sprites[currentOrder[0]];
+        GameObject.Find("Order2Image").GetComponent<Image>().sprite = Sprites[currentOrder[1]];
     }
 
     void SpawnNewPlate()
@@ -63,41 +63,27 @@ public class CookingGameManager : MonoBehaviour
     // This is called by the EndPoint when a plate arrives
     public void CheckPlate(Plate plate)
     {
+
         // --- Compare the plate's list to the currentOrder list ---
-        bool isCorrect = true;
-        if (plate.ingredients.Count != currentOrder.Count)
+        
+        if(currentOrder[0] != -1 && plate.SushiType == currentOrder[0])
         {
-            isCorrect = false;
-        }
-        else
+            // delete first order
+            GameObject.Find("Order1Image").GetComponent<Image>().sprite = null;
+            currentOrder[0] = -1;
+        } 
+        else if (currentOrder[1] != -1 && plate.SushiType == currentOrder[1])
         {
-            for (int i = 0; i < currentOrder.Count; i++)
-            {
-                if (plate.ingredients[i] != currentOrder[i])
-                {
-                    isCorrect = false;
-                    break;
-                }
-            }
+            // delete second order
+            GameObject.Find("Order1Image").GetComponent<Image>().sprite = Sprites[currentOrder[1]];
+            currentOrder[1] = -1;
         }
 
-        // --- Handle Correct or Incorrect ---
-        if (isCorrect)
-        {
-            Debug.Log("Correct Order!");
-            streak++;
-            currentConveyorSpeed = baseConveyorSpeed + (streak * speedIncrease);
-            // Add score
-        }
-        else
-        {
-            Debug.Log("Wrong Order!");
-            streak = 0;
-            currentConveyorSpeed = baseConveyorSpeed; // Reset speed
-        }
+        streak++;
+        currentConveyorSpeed = baseConveyorSpeed + (streak * speedIncrease);
+        // Add score
         
-        GenerateNewOrder();
-        SpawnNewPlate();
+        if(currentOrder[0] == -1 && currentOrder[1] == -1) GenerateNewOrder();
     }
 
     void EndGame()

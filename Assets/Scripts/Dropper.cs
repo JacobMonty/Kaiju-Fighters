@@ -14,7 +14,7 @@ public class Dropper : MonoBehaviour
         // When the player presses the key AND a plate is underneath
         if (Input.GetKeyDown(keyToPress) && currentPlate != null)
         {
-            currentPlate.AddIngredient(ingredientType, ingredientPrefab);
+            //currentPlate.AddIngredient(ingredientType, ingredientPrefab);
         }
     }
 
