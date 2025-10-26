@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Tackle
   m_EditorClassIdentifier: Assembly-CSharp::MoveData
   moveName: Tackle
-  damage: 10
+  damage: 100
   cooldown: 5
   animationTrigger: Tackle
   particleEffect: {fileID: 0}

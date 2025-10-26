@@ -14,7 +14,7 @@ public class FightManager : MonoBehaviour
     public KaijuData enemyData;
     
     public string overworldSceneName = "Overworld";
-    public string mainMenuSceneName = "MainMenu";
+    public string mainMenuSceneName = "EndScreen";
 
     public static FightManager singleton;
     
