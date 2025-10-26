@@ -124,6 +124,7 @@ public class CookingGameManager : MonoBehaviour
         // TODO: Show a "Results" screen or load the MainGame scene
 
         GameOverScreen.SetActive(true);
+        
         GameUI.SetActive(false);
     }
 
