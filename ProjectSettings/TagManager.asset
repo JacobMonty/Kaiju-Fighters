@@ -4,8 +4,12 @@
 TagManager:
   serializedVersion: 3
   tags:
-  - Red House
+  - Note
+  - Plate
+  - NoteLeft
+  - NoteRight
   - House
+  - Red House
   - Yellow House
   - Green House
   layers:
