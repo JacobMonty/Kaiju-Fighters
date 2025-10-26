@@ -25,7 +25,7 @@ public class GameManager : MonoBehaviour
     [Header("UI Links")]
     public TextMeshProUGUI scoreText;
     public GameObject gameOverPanel;
-    public TextMeshProUGUI finalScoreText;
+    //public TextMeshProUGUI finalScoreText;
 
     void Start()
     {
@@ -84,7 +84,7 @@ public class GameManager : MonoBehaviour
 
         // Show the game over screen
         gameOverPanel.SetActive(true);
-        finalScoreText.text = "Final Score: " + score;
+        //finalScoreText.text = "Final Score: " + score;
         
         // You would also spawn your "Miss" animation here
     }

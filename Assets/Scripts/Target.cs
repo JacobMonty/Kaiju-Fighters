@@ -10,6 +10,7 @@ public class Target : MonoBehaviour
     public GameManager gameManager;
     public AudioClip hitSound;
     public GameObject hitEffectPrefab;
+    public Animator kaijudance;
 
     // We need to add this to link to the character
     public string animationTriggerName; // e.g., "HitLeft"
@@ -35,6 +36,7 @@ public class Target : MonoBehaviour
             {
                 // --- HIT! ---
                 gameManager.AddScore();
+                kaijudance.SetBool("buttonPress", true);
                 
                 // Play sound
                 // audioSource.PlayOneShot(hitSound);

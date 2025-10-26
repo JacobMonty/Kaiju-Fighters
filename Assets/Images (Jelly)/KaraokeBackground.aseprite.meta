@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: f4151809df039e2469de380486dadd40
+guid: c2fd92fb9e36a4c4090a29f3de0064ee
 ScriptedImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -127,51 +127,9 @@ ScriptedImporter:
     tessellationDetail: 0
     uvTransform: {x: 0, y: 0}
   animatedSpriteImportData:
-  - name: Frame_0
+  - name: KaraokeBackground
     originalName: 
-    pivot: {x: 0.47265622, y: -0.28997868}
-    alignment: 9
-    border: {x: 0, y: 0, z: 0, w: 0}
-    customData: 
-    rect:
-      serializedVersion: 2
-      x: 4
-      y: 477
-      width: 512
-      height: 469
-    spriteID: c5b8b10d83320394a8bd7f71e2c5e251
-    spriteBone: []
-    spriteOutline: []
-    vertices: []
-    spritePhysicsOutline: []
-    indices: 
-    edges: []
-    tessellationDetail: 0
-    uvTransform: {x: 4, y: 477}
-  - name: Frame_1
-    originalName: 
-    pivot: {x: 0.49899396, y: -0.2851153}
-    alignment: 9
-    border: {x: 0, y: 0, z: 0, w: 0}
-    customData: 
-    rect:
-      serializedVersion: 2
-      x: 524
-      y: 477
-      width: 497
-      height: 477
-    spriteID: 18ade532bd0e4f544919fa92b4ebe536
-    spriteBone: []
-    spriteOutline: []
-    vertices: []
-    spritePhysicsOutline: []
-    indices: 
-    edges: []
-    tessellationDetail: 0
-    uvTransform: {x: 524, y: 477}
-  - name: Frame_2
-    originalName: 
-    pivot: {x: 0.5245009, y: -0.32688174}
+    pivot: {x: 0.5, y: 0}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     customData: 
@@ -179,9 +137,9 @@ ScriptedImporter:
       serializedVersion: 2
       x: 4
       y: 4
-      width: 551
-      height: 465
-    spriteID: c145aa73572561e4faef0919a88726a0
+      width: 1920
+      height: 1080
+    spriteID: a1ed525e89a7f654caac84a1b0cfe4b0
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -190,138 +148,30 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     uvTransform: {x: 4, y: 4}
-  - name: Frame_3
-    originalName: 
-    pivot: {x: 0.42365593, y: -0.2815735}
-    alignment: 9
-    border: {x: 0, y: 0, z: 0, w: 0}
-    customData: 
-    rect:
-      serializedVersion: 2
-      x: 1029
-      y: 477
-      width: 465
-      height: 483
-    spriteID: 4f3656d8964b71f4fa6a2677aa0909f2
-    spriteBone: []
-    spriteOutline: []
-    vertices: []
-    spritePhysicsOutline: []
-    indices: 
-    edges: []
-    tessellationDetail: 0
-    uvTransform: {x: 1029, y: 477}
-  - name: Frame_4
-    originalName: 
-    pivot: {x: 0.5047259, y: -0.32688174}
-    alignment: 9
-    border: {x: 0, y: 0, z: 0, w: 0}
-    customData: 
-    rect:
-      serializedVersion: 2
-      x: 563
-      y: 4
-      width: 529
-      height: 465
-    spriteID: 4a392dababcb06f4b97e4e3cebf7f080
-    spriteBone: []
-    spriteOutline: []
-    vertices: []
-    spritePhysicsOutline: []
-    indices: 
-    edges: []
-    tessellationDetail: 0
-    uvTransform: {x: 563, y: 4}
-  - name: Frame_5
-    originalName: 
-    pivot: {x: 0.42365593, y: -0.2815735}
-    alignment: 9
-    border: {x: 0, y: 0, z: 0, w: 0}
-    customData: 
-    rect:
-      serializedVersion: 2
-      x: 1502
-      y: 477
-      width: 465
-      height: 483
-    spriteID: 7cfed1761fad2e44789f32303d1af2c0
-    spriteBone: []
-    spriteOutline: []
-    vertices: []
-    spritePhysicsOutline: []
-    indices: 
-    edges: []
-    tessellationDetail: 0
-    uvTransform: {x: 1502, y: 477}
   spriteSheetImportData: []
   tileSetImportData: []
   asepriteLayers:
   - layerIndex: 0
     uuid:
-      value0: 1400069880
+      value0: 1570048908
       value1: 0
       value2: 0
       value3: 0
     guid: 0
-    name: Kaiju
+    name: KaraokeBackground
     layerFlags: 0
     layerType: 0
     blendMode: 0
     cells:
-    - name: Frame_0
+    - name: KaraokeBackground
       frameIndex: 0
       additiveSortOrder: 0
       cellRect:
-        x: 108
-        y: 136
-        width: 512
-        height: 469
-      spriteId: c5b8b10d83320394a8bd7f71e2c5e251
-    - name: Frame_1
-      frameIndex: 1
-      additiveSortOrder: 0
-      cellRect:
-        x: 102
-        y: 136
-        width: 497
-        height: 477
-      spriteId: 18ade532bd0e4f544919fa92b4ebe536
-    - name: Frame_2
-      frameIndex: 2
-      additiveSortOrder: 0
-      cellRect:
-        x: 61
-        y: 152
-        width: 551
-        height: 465
-      spriteId: c145aa73572561e4faef0919a88726a0
-    - name: Frame_3
-      frameIndex: 3
-      additiveSortOrder: 0
-      cellRect:
-        x: 153
-        y: 136
-        width: 465
-        height: 483
-      spriteId: 4f3656d8964b71f4fa6a2677aa0909f2
-    - name: Frame_4
-      frameIndex: 4
-      additiveSortOrder: 0
-      cellRect:
-        x: 83
-        y: 152
-        width: 529
-        height: 465
-      spriteId: 4a392dababcb06f4b97e4e3cebf7f080
-    - name: Frame_5
-      frameIndex: 5
-      additiveSortOrder: 0
-      cellRect:
-        x: 153
-        y: 136
-        width: 465
-        height: 483
-      spriteId: 7cfed1761fad2e44789f32303d1af2c0
+        x: 0
+        y: 0
+        width: 1920
+        height: 1080
+      spriteId: a1ed525e89a7f654caac84a1b0cfe4b0
     linkedCells: []
     tileCells: []
     tileSetIndex: 0
@@ -331,5 +181,5 @@ ScriptedImporter:
   generatePhysicsShape: 0
   secondarySpriteTextures: []
   spritePackingTag: 
-  canvasSize: {x: 700, y: 800}
-  previousTextureSize: {x: 2048, y: 1024}
+  canvasSize: {x: 1920, y: 1080}
+  previousTextureSize: {x: 2048, y: 2048}
