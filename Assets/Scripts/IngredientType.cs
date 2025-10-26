@@ -1,7 +1,8 @@
 // IngredientType.cs
 public enum IngredientType
 {
-    Cake,
-    Frosting,
-    Sprinkles
+    AMERICA,
+    TUNA,
+    NEGITORO,
+    SHRIMP
 }

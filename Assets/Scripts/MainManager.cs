@@ -1,8 +1,13 @@
+using UnityEditor.SearchService;
 using UnityEngine;
 
 public class MainManager : MonoBehaviour
 {
     public static MainManager Instance;
+
+    public float power = 10f;
+    public float defense = 10f;
+    public float speed = 5f;
 
     private void Awake()
     {
@@ -15,4 +20,6 @@ public class MainManager : MonoBehaviour
         Instance = this;
         DontDestroyOnLoad(gameObject);
     }
+
+    
 }

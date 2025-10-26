@@ -1,19 +1,23 @@
 using UnityEngine;
 using System.Collections.Generic; // To use Lists
+using Unity.VisualScripting;
 
 public class Plate : MonoBehaviour
 {
     // This list will store the ingredients we add
-    public List<IngredientType> ingredients = new List<IngredientType>();
+    public Sprite[] Sprites;
     
+    public int SushiType;
     private CookingGameManager gameManager;
     private float speed;
-    private float yOffset = 0.5f; // To stack ingredients
     
     void Start()
     {
         // Find the GameManager in the scene
         gameManager = FindFirstObjectByType<CookingGameManager>();
+
+        SushiType = Random.Range(0,4);
+        GetComponent<SpriteRenderer>().sprite = Sprites[SushiType];
     }
 
     void Update()
@@ -25,17 +29,8 @@ public class Plate : MonoBehaviour
         transform.Translate(Vector3.right * speed * Time.deltaTime);
     }
 
-    // This function will be called by the Droppers
-    public void AddIngredient(IngredientType type, GameObject ingredientPrefab)
+    private void OnMouseDown()
     {
-        ingredients.Add(type);
-        
-        // --- Visual Part ---
-        // Spawn the ingredient sprite (e.g., the frosting)
-        Vector3 spawnPos = transform.position + new Vector3(0, yOffset * ingredients.Count, 0);
-        GameObject ingredientVisual = Instantiate(ingredientPrefab, spawnPos, Quaternion.identity);
-        
-        // Make the ingredient a child of the plate so it moves with it
-        ingredientVisual.transform.SetParent(this.transform);
+        Destroy(gameObject);
     }
 }

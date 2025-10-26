@@ -1,6 +1,8 @@
 using UnityEngine;
 using TMPro; // For the UI text
-using System.Collections.Generic; // To use Lists
+using System.Collections.Generic;
+using UnityEngine.UI;
+using UnityEditor.Experimental.GraphView; // To use Lists
 
 public class CookingGameManager : MonoBehaviour
 {
@@ -10,15 +12,20 @@ public class CookingGameManager : MonoBehaviour
     public float speedIncrease = 0.5f;
     private float currentConveyorSpeed;
     private int streak = 0;
+    public int score = 0;
 
     [Header("Object Links")]
     public GameObject platePrefab;
     public Transform plateSpawnPoint;
-    public TextMeshProUGUI timerText;
+    public Sprite[] Sprites;
     public TextMeshProUGUI scoreText; // Add a score variable if you want
+    public GameObject GameOverScreen;
+    public GameObject GameUI;
     
     // This will hold the "correct" order
-    private List<IngredientType> currentOrder = new List<IngredientType>();
+    private List<int> currentOrder = new List<int>();
+
+    private int sushiTimer = 100;
 
     void Start()
     {
@@ -29,14 +36,16 @@ public class CookingGameManager : MonoBehaviour
 
     void Update()
     {
-        // --- Timer Logic ---
-        gameTimer -= Time.deltaTime;
-        timerText.text = "Time: " + Mathf.Ceil(gameTimer).ToString();
+        sushiTimer--;
 
-        if (gameTimer <= 0)
+        if(sushiTimer == 0)
         {
-            EndGame();
+            if(Random.Range(0, 30) > 15)
+            SpawnNewPlate();
+            sushiTimer = 100;
         }
+
+        
     }
 
     public float GetCurrentSpeed()
@@ -48,11 +57,11 @@ public class CookingGameManager : MonoBehaviour
     {
         // This is a simple example. You can make this more complex.
         currentOrder.Clear();
-        currentOrder.Add(IngredientType.Cake);
-        currentOrder.Add(IngredientType.Frosting);
-        
-        // TODO: Update the UI (OrderDisplay) to show these ingredients
-        Debug.Log("New Order: Cake and Frosting");
+        for(int i = 0; i < 2; i++) currentOrder.Add(Random.Range(0, 4));
+        Debug.Log("New Order: " + GameObject.Find("Order1Image"));
+
+        GameObject.Find("Order1Image").GetComponent<Image>().sprite = Sprites[currentOrder[0]];
+        GameObject.Find("Order2Image").GetComponent<Image>().sprite = Sprites[currentOrder[1]];
     }
 
     void SpawnNewPlate()
@@ -63,41 +72,48 @@ public class CookingGameManager : MonoBehaviour
     // This is called by the EndPoint when a plate arrives
     public void CheckPlate(Plate plate)
     {
+        int plateInOrder = inOrder(plate.SushiType);
+
         // --- Compare the plate's list to the currentOrder list ---
-        bool isCorrect = true;
-        if (plate.ingredients.Count != currentOrder.Count)
+        if(plateInOrder == 0)
         {
-            isCorrect = false;
-        }
-        else
+            // delete first order
+            GameObject.Find("Order1Image").GetComponent<Image>().sprite = null;
+            currentOrder[0] = -1;
+            score++;
+            scoreText.text = "Score: " + score.ToString();
+        } 
+        else if (plateInOrder == 1)
         {
-            for (int i = 0; i < currentOrder.Count; i++)
-            {
-                if (plate.ingredients[i] != currentOrder[i])
-                {
-                    isCorrect = false;
-                    break;
-                }
-            }
+            // delete second order
+            GameObject.Find("Order1Image").GetComponent<Image>().sprite = Sprites[currentOrder[1]];
+            currentOrder[1] = -1;
+            score++;
+            scoreText.text = "Score: " + score.ToString();
         }
 
-        // --- Handle Correct or Incorrect ---
-        if (isCorrect)
+        streak++;
+        currentConveyorSpeed = baseConveyorSpeed + (streak * speedIncrease);
+        // Add score
+
+        if (plateInOrder == 3)
         {
-            Debug.Log("Correct Order!");
-            streak++;
-            currentConveyorSpeed = baseConveyorSpeed + (streak * speedIncrease);
-            // Add score
+            GenerateNewOrder();
         }
-        else
-        {
-            Debug.Log("Wrong Order!");
-            streak = 0;
-            currentConveyorSpeed = baseConveyorSpeed; // Reset speed
+
+        if (plateInOrder == -1) EndGame();
+    }
+
+    private int inOrder(int type)
+    {
+        if (currentOrder[0] == -1 && currentOrder[0] == -1) return 3;
+
+        for(int i = 0; i < 2; i++) 
+        { 
+            if (currentOrder[i] == type) return i;
         }
-        
-        GenerateNewOrder();
-        SpawnNewPlate();
+
+        return -1;
     }
 
     void EndGame()
@@ -106,5 +122,9 @@ public class CookingGameManager : MonoBehaviour
         Time.timeScale = 0; // Pauses everything
         Debug.Log("Game Over!");
         // TODO: Show a "Results" screen or load the MainGame scene
+
+        GameOverScreen.SetActive(true);
+        GameUI.SetActive(false);
     }
+
 }
