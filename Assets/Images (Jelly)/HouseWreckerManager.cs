@@ -8,6 +8,7 @@ public class HouseWreckerManager : MonoBehaviour
     public GameObject house;
     public Sprite[] houseTypes;
     public Text scoreText;
+    public GameObject GameOverPanel;
 
     public Vector3 minPosition, maxPosition;
 
@@ -18,10 +19,20 @@ public class HouseWreckerManager : MonoBehaviour
     private int gameProgression = 1;
     private int houseSpawnNum = 5;
 
+    public bool isGameOver = false;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        
+        score = 0;
+        timePassed = 0;
+        houseSpawnInterval = 5;
+        gameProgression = 1;
+        houseSpawnNum = 5;
+        isGameOver = false;
+        scoreText.text = "Score: 0";
+
+        Time.timeScale = 1; // Make sure the game is not paused
     }
 
     // Update is called once per frame
@@ -56,7 +67,7 @@ public class HouseWreckerManager : MonoBehaviour
                 newHouse.GetComponentAtIndex(0).GetComponent<SpriteRenderer>().sprite = houseTypes[2];
                 newHouse.tag = "Yellow House";
             }
-            else if (randFloat < 20 + gameProgression / 2)
+            else if (randFloat < 40 + gameProgression / 2)
             {
                 newHouse.GetComponentAtIndex(0).GetComponent<SpriteRenderer>().sprite = houseTypes[0];
                 newHouse.tag = "Red House";
@@ -74,7 +85,23 @@ public class HouseWreckerManager : MonoBehaviour
 
     public void AddPoints(int points)
     {
+        if (isGameOver) return;
+
         score += points;
         scoreText.text = "Score: " + score.ToString();
+    }
+
+    public void EndGame()
+    {
+        if (isGameOver) return;
+
+        Time.timeScale = 0; // Pause the game
+        GameOverPanel.SetActive(true);
+        isGameOver = true;
+    }
+
+    public void UnpauseGame()
+    {
+        Time.timeScale = 1;
     }
 }
